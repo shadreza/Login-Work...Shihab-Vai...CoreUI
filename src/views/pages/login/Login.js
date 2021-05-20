@@ -19,9 +19,9 @@ import CIcon from '@coreui/icons-react';
 
 const Login = () => {
 
-  document.getElementById('switch-btn').onclick = () =>{
-    console.log('toggled');
-  }
+  // document.getElementById('switch-btn').onclick = () =>{
+  //   console.log('toggled');
+  // }
 
   return (
     <div className="c-app c-default-layout flex-row align-items-center">
