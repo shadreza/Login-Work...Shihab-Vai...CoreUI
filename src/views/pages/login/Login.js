@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   CButton,
   CCard,
@@ -13,10 +13,16 @@ import {
   CInputGroupPrepend,
   CInputGroupText,
   CRow
-} from '@coreui/react'
-import CIcon from '@coreui/icons-react'
+} from '@coreui/react';
+import './Login.css';
+import CIcon from '@coreui/icons-react';
 
 const Login = () => {
+
+  document.getElementById('switch-btn').onclick = () =>{
+    console.log('toggled');
+  }
+
   return (
     <div className="c-app c-default-layout flex-row align-items-center">
       <CContainer>
@@ -27,7 +33,21 @@ const Login = () => {
                 <CCardBody>
                   <CForm>
                     <h1>Login</h1>
-                    <p className="text-muted">Sign In to your account</p>
+                    <div className="muted-text-and-toggler-div">
+                      <div className="muted-text-on-left">
+                        <p className="text-muted">Sign In to your account</p>
+                      </div>
+                      <div className="toggler-on-right">
+                        <div className="toggler-switch">
+                          <p className="text-Personal">Personal</p>
+                          <label className="switch">
+                            <input type="checkbox"  id="switch-btn"/>
+                            <span className="slider"/>
+                          </label>
+                          <p className="text-Company">Company</p>
+                        </div>
+                      </div>
+                    </div>
                     <CInputGroup className="mb-3">
                       <CInputGroupPrepend>
                         <CInputGroupText>
