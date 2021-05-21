@@ -23,15 +23,18 @@ const Login = () => {
 
   const togglerClicked = () => {
     togglerSwitchCount=(togglerSwitchCount+1)%2;
-    if(togglerSwitchCount){
+    if(togglerSwitchCount === 1){
       document.getElementById('text-Personal').style.color="gray";
       document.getElementById('text-Company').style.color="#321fdb";
       document.getElementById('dummy').style.display="inline-block";
     }
-    else{
+    else if(togglerSwitchCount === 0){
       document.getElementById('text-Personal').style.color="#321fdb";
       document.getElementById('text-Company').style.color="gray";
       document.getElementById('dummy').style.display="none";
+    }
+    else{
+
     }
   }
 
