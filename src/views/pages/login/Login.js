@@ -26,10 +26,12 @@ const Login = () => {
     if(togglerSwitchCount){
       document.getElementById('text-Personal').style.color="gray";
       document.getElementById('text-Company').style.color="#321fdb";
+      document.getElementById('dummy').style.display="inline-block";
     }
     else{
       document.getElementById('text-Personal').style.color="#321fdb";
       document.getElementById('text-Company').style.color="gray";
+      document.getElementById('dummy').style.display="none";
     }
   }
 
@@ -64,24 +66,28 @@ const Login = () => {
                           <CIcon name="cil-user" />
                         </CInputGroupText>
                       </CInputGroupPrepend>
-                      <CInput type="text" placeholder="Username" autoComplete="username" />
+                      <CInput type="text" placeholder="Name" autoComplete="name" id="input-name"/>
                     </CInputGroup>
-                    <CInputGroup className="mb-4">
+                    <CInputGroup className="mb-3">
                       <CInputGroupPrepend>
                         <CInputGroupText>
-                          <CIcon name="cil-briefcase" />
+                          {/* <CIcon name="cil-card-travel" /> */}
+                          <img src="https://image.flaticon.com/icons/png/512/639/639394.png" alt="" className="briefcase-icon" />
                         </CInputGroupText>
                       </CInputGroupPrepend>
-                      <CInput type="text" placeholder="Job" autoComplete="job" />
+                      <CInput type="text" placeholder="Job" autoComplete="job" id="input-job"/>
                     </CInputGroup>
-                    <CInputGroup className="mb-4">
-                      <CInputGroupPrepend>
-                        <CInputGroupText>
-                          <CIcon name="cil-lock-locked" />
-                        </CInputGroupText>
-                      </CInputGroupPrepend>
-                      <CInput type="password" placeholder="Password" autoComplete="current-password" />
-                    </CInputGroup>
+                    <div id="dummy">
+                      <CInputGroup className="mb-4 dummy-class">
+                        <CInputGroupPrepend>
+                          <CInputGroupText>
+                            <CIcon name="cil-lock-locked" />
+                          </CInputGroupText>
+                        </CInputGroupPrepend>
+                        <CInput type="text" placeholder="Dummy" autoComplete="dummy" id="input-dummy"/>
+                      </CInputGroup>
+                    </div>
+                    
                     <CRow>
                       <CCol xs="6">
                         <CButton color="primary" className="px-4">Login</CButton>

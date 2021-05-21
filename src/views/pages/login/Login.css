@@ -60,3 +60,11 @@ input:checked + .slider::before{
     color:gray;
 }
 
+.briefcase-icon{
+    width:16px;
+}
+
+#dummy{
+    display:none;
+    width:100%;
+}
