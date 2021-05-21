@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { Link , useHistory } from 'react-router-dom';
 import {
   CButton,
   CCard,
@@ -19,28 +19,60 @@ import CIcon from '@coreui/icons-react';
 
 const Login = () => {
 
+  let history = useHistory();
+
   let nameFromInput = '';
   let jobFromInput = '';
 
   const clickedLoginButton = () => {
     nameFromInput = document.getElementById('input-name').value;
     jobFromInput = document.getElementById('input-job').value;
-    console.log(nameFromInput,jobFromInput);
-    const url = 'https://reqres.in/api/user';
-    // data to be sent to the POST request
-    let _data = {
-      name : nameFromInput,
-      job : jobFromInput
+
+    if(typeof nameFromInput !== 'undefined' && nameFromInput !== null && nameFromInput.length > 0 && typeof jobFromInput !== 'undefined' && jobFromInput !== null && jobFromInput.length > 0) {
+
+      console.log(`{
+  name : "${nameFromInput}",
+  job : "${jobFromInput}"
+}`);
+
+      const url = 'https://reqres.in/api/login';
+      // data to be sent to the POST request
+      let _data = {
+        "email": "eve.holt@reqres.in",
+        "password": "cityslicka"
+      }
+
+      try{
+        fetch(url, {
+          method: "POST",
+          body: JSON.stringify(_data),
+          headers: {"Content-type": "application/json; charset=UTF-8"}
+        })
+        .then(response => response.json()) 
+        .then(data => {
+          // console.log(data);
+          if(typeof(data.error)!=='undefined' && data.error.length>0){
+            // error
+            history.replace('/register');
+          }
+          else if(typeof(data.token) !== 'undefined' && data.token.length>0){
+            // success
+            history.replace('/');
+          }
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+      }
+      catch(err){
+        console.log('Problem With The Server');
+      }
     }
 
-    fetch(url, {
-      method: "POST",
-      body: JSON.stringify(_data),
-      // headers: {"Content-type": "application/json; charset=UTF-8"}
-    })
-    .then(response => response.json()) 
-    .then(json => console.log(json))
-    .catch(err => console.log(err));
+    else{
+      return;
+    }
+    
   }
 
   let togglerSwitchCount=0;
