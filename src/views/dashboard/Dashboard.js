@@ -13,19 +13,18 @@ import {
   CCallout
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-import ContextForDashboard from '../../App';
+import SampleTable from '../../containers/SampleTable'
 import MainChartExample from '../charts/MainChartExample.js'
+import { ContextForDashboard } from 'src/App.js'
 
 const WidgetsDropdown = lazy(() => import('../widgets/WidgetsDropdown.js'))
 const WidgetsBrand = lazy(() => import('../widgets/WidgetsBrand.js'))
 
 const Dashboard = () => {
   const dashboardContext = useContext(ContextForDashboard);
-  console.log(dashboardContext);
-  
   return (
-    // {
-    //   this.state.count === 0 ? 
+    
+      dashboardContext[0] === true ?
     
         <>
           <WidgetsDropdown />
@@ -557,11 +556,11 @@ const Dashboard = () => {
             </CCol>
           </CRow>
         </>
-      // : 
-      //   <>
-      //   <p>HI</p>
-      //   </>
-    // }
+        
+        :
+        <>
+          <SampleTable></SampleTable>
+        </>
   )
 }
 

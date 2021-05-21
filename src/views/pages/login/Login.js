@@ -1,4 +1,4 @@
-import React from 'react';
+import React , { useContext } from 'react';
 import { Link , useHistory } from 'react-router-dom';
 import {
   CButton,
@@ -16,8 +16,11 @@ import {
 } from '@coreui/react';
 import './Login.css';
 import CIcon from '@coreui/icons-react';
+import { ContextForDashboard } from 'src/App';
 
 const Login = () => {
+
+  const dashboardContext = useContext(ContextForDashboard);
 
   let history = useHistory();
 
@@ -57,6 +60,7 @@ const Login = () => {
           }
           else if(typeof(data.token) !== 'undefined' && data.token.length>0){
             // success
+            dashboardContext[1](false);
             history.replace('/');
           }
         })

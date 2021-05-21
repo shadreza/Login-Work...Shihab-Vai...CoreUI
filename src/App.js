@@ -19,13 +19,24 @@ const Register = React.lazy(() => import('./views/pages/register/Register'));
 const Page404 = React.lazy(() => import('./views/pages/page404/Page404'));
 const Page500 = React.lazy(() => import('./views/pages/page500/Page500')); 
 
-class App extends Component {
+// class App extends Component {
   
-  render() {
+//   render() {
 
-    return (
+//     return (
       
-      <ContextForDashboard.Provider value={[0]}>  
+      
+//     );
+//   }
+// }
+
+// export default App;
+
+const App = () => {
+  const [dashboardBeSetToDefaultOrNot,setDashboardBeSetToDefaultOrNot] = useState(true);
+  return (
+    <div>
+      <ContextForDashboard.Provider value={[dashboardBeSetToDefaultOrNot,setDashboardBeSetToDefaultOrNot]}>  
         <HashRouter>
             <React.Suspense fallback={loading}>
               <Switch>
@@ -38,8 +49,8 @@ class App extends Component {
             </React.Suspense>
         </HashRouter>
       </ContextForDashboard.Provider>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default App;
