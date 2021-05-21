@@ -16,11 +16,12 @@ import {
 } from '@coreui/react';
 import './Login.css';
 import CIcon from '@coreui/icons-react';
-import { ContextForDashboard } from 'src/App';
+import { ContextForDashboard , ContextForUserInfo } from 'src/App';
 
 const Login = () => {
 
   const dashboardContext = useContext(ContextForDashboard);
+  const userInfoContext = useContext(ContextForUserInfo);
 
   let history = useHistory();
 
@@ -38,11 +39,20 @@ const Login = () => {
   job : "${jobFromInput}"
 }`);
 
+      const dummyEmail = "eve.holt@reqres.in";
+      const dummyPassword = "cityslicka";
+
+      userInfoContext[0][1](true);
+      userInfoContext[1][1](nameFromInput);
+      userInfoContext[2][1](jobFromInput);
+      userInfoContext[3][1](dummyEmail);
+      userInfoContext[4][1](dummyPassword);
+
       const url = 'https://reqres.in/api/login';
       // data to be sent to the POST request
       let _data = {
-        "email": "eve.holt@reqres.in",
-        "password": "cityslicka"
+        "email": dummyEmail,
+        "password": dummyPassword
       }
 
       try{

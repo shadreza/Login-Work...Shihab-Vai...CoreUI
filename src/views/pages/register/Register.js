@@ -1,4 +1,4 @@
-import React from 'react'
+import React , { useContext } from 'react'
 import {
   CButton,
   CCard,
@@ -14,8 +14,15 @@ import {
   CRow
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
+import { ContextForUserInfo } from 'src/App'
 
 const Register = () => {
+
+  const userInfoContext = useContext(ContextForUserInfo);
+  // if(userInfoContext[0][0] === true){
+  //   document.getElementById('username-field').innerText=userInfoContext[3][0];
+  //   document.getElementById('username-field').value=userInfoContext[3][0];
+  // }
   return (
     <div className="c-app c-default-layout flex-row align-items-center">
       <CContainer>
@@ -32,13 +39,23 @@ const Register = () => {
                         <CIcon name="cil-user" />
                       </CInputGroupText>
                     </CInputGroupPrepend>
-                    <CInput type="text" placeholder="Username" autoComplete="username" />
+                    {
+                      userInfoContext[0][0] === true ? 
+                        <CInput type="text" placeholder="Username" autoComplete={userInfoContext[1][0]} value={userInfoContext[1][0]} id="username-field"/>  
+                      :
+                        <CInput type="text" placeholder="Username" autoComplete="username" id="username-field"/>
+                    }
                   </CInputGroup>
                   <CInputGroup className="mb-3">
                     <CInputGroupPrepend>
                       <CInputGroupText>@</CInputGroupText>
                     </CInputGroupPrepend>
-                    <CInput type="text" placeholder="Email" autoComplete="email" />
+                    {
+                      userInfoContext[0][0] === true ? 
+                        <CInput type="text" placeholder="Email" autoComplete={userInfoContext[3][0]} value={userInfoContext[3][0]} id="email-field"/>
+                      :
+                        <CInput type="text" placeholder="Email" autoComplete="email" id="email-field"/>
+                    }
                   </CInputGroup>
                   <CInputGroup className="mb-3">
                     <CInputGroupPrepend>
@@ -46,7 +63,12 @@ const Register = () => {
                         <CIcon name="cil-lock-locked" />
                       </CInputGroupText>
                     </CInputGroupPrepend>
-                    <CInput type="password" placeholder="Password" autoComplete="new-password" />
+                    {
+                      userInfoContext[0][0] === true ? 
+                        <CInput type="password" placeholder="Password" autoComplete={userInfoContext[4][0]} value={userInfoContext[4][0]} id="new-password-field"/>
+                      :
+                        <CInput type="password" placeholder="Password" autoComplete="new-password" id="new-password-field"/>
+                    }
                   </CInputGroup>
                   <CInputGroup className="mb-4">
                     <CInputGroupPrepend>
@@ -54,7 +76,7 @@ const Register = () => {
                         <CIcon name="cil-lock-locked" />
                       </CInputGroupText>
                     </CInputGroupPrepend>
-                    <CInput type="password" placeholder="Repeat password" autoComplete="new-password" />
+                    <CInput type="password" placeholder="Repeat password" autoComplete="new-password" id="repeat-new-password-field"/>
                   </CInputGroup>
                   <CButton color="success" block>Create Account</CButton>
                 </CForm>
