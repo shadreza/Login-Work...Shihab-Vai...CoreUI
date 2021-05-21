@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   CButton,
@@ -18,6 +18,30 @@ import './Login.css';
 import CIcon from '@coreui/icons-react';
 
 const Login = () => {
+
+  let nameFromInput = '';
+  let jobFromInput = '';
+
+  const clickedLoginButton = () => {
+    nameFromInput = document.getElementById('input-name').value;
+    jobFromInput = document.getElementById('input-job').value;
+    console.log(nameFromInput,jobFromInput);
+    const url = 'https://reqres.in/api/user';
+    // data to be sent to the POST request
+    let _data = {
+      name : nameFromInput,
+      job : jobFromInput
+    }
+
+    fetch(url, {
+      method: "POST",
+      body: JSON.stringify(_data),
+      // headers: {"Content-type": "application/json; charset=UTF-8"}
+    })
+    .then(response => response.json()) 
+    .then(json => console.log(json))
+    .catch(err => console.log(err));
+  }
 
   let togglerSwitchCount=0;
 
@@ -69,7 +93,7 @@ const Login = () => {
                           <CIcon name="cil-user" />
                         </CInputGroupText>
                       </CInputGroupPrepend>
-                      <CInput type="text" placeholder="Name" autoComplete="name" id="input-name"/>
+                      <CInput type="text" placeholder="Name" autoComplete="name" id="input-name" />
                     </CInputGroup>
                     <CInputGroup className="mb-3">
                       <CInputGroupPrepend>
@@ -93,7 +117,7 @@ const Login = () => {
                     
                     <CRow>
                       <CCol xs="6">
-                        <CButton color="primary" className="px-4">Login</CButton>
+                        <CButton color="primary" className="px-4" onClick={() => clickedLoginButton()}>Login</CButton>
                       </CCol>
                       <CCol xs="6" className="text-right">
                         <CButton color="link" className="px-0">Forgot password?</CButton>
