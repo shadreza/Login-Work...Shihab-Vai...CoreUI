@@ -19,6 +19,20 @@ import CIcon from '@coreui/icons-react';
 
 const Login = () => {
 
+  let togglerSwitchCount=0;
+
+  const togglerClicked = () => {
+    togglerSwitchCount=(togglerSwitchCount+1)%2;
+    if(togglerSwitchCount){
+      document.getElementById('text-Personal').style.color="gray";
+      document.getElementById('text-Company').style.color="#321fdb";
+    }
+    else{
+      document.getElementById('text-Personal').style.color="#321fdb";
+      document.getElementById('text-Company').style.color="gray";
+    }
+  }
+
   return (
     <div className="c-app c-default-layout flex-row align-items-center">
       <CContainer>
@@ -35,12 +49,12 @@ const Login = () => {
                       </div>
                       <div className="toggler-on-right">
                         <div className="toggler-switch">
-                          <p className="text-Personal">Personal</p>
+                          <p className="text-toggler" id="text-Personal">Personal</p>
                           <label className="switch">
-                            <input type="checkbox"  id="switch-btn"/>
-                            <span className="slider"/>
+                            <input type="checkbox"/>
+                            <span className="slider"  id="switch-btn" onClick={()=>togglerClicked()}/>
                           </label>
-                          <p className="text-Company">Company</p>
+                          <p className="text-toggler" id="text-Company">Company</p>
                         </div>
                       </div>
                     </div>
@@ -51,6 +65,14 @@ const Login = () => {
                         </CInputGroupText>
                       </CInputGroupPrepend>
                       <CInput type="text" placeholder="Username" autoComplete="username" />
+                    </CInputGroup>
+                    <CInputGroup className="mb-4">
+                      <CInputGroupPrepend>
+                        <CInputGroupText>
+                          <CIcon name="cil-briefcase" />
+                        </CInputGroupText>
+                      </CInputGroupPrepend>
+                      <CInput type="text" placeholder="Job" autoComplete="job" />
                     </CInputGroup>
                     <CInputGroup className="mb-4">
                       <CInputGroupPrepend>
